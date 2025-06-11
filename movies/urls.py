@@ -6,4 +6,5 @@ urlpatterns = [
     path(
         "movies/<int:pk>", MovieRetrieveUpdateDestroyView.as_view(), name="movie-detail"
     ),
+    path("movies/stats/", MovieStatsView.as_view(), name="moview-stats"),
 ]
