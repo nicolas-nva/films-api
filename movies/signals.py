@@ -1,9 +1,10 @@
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-from movies.models import Movie
+from .models import Movie
 from gemini_api.client import get_movie_resume
 
-@receiver(pre_save, sender = Movie)
+
+@receiver(pre_save, sender=Movie)
 def movie_pre_save(sender, instance, **kwargs):
     if not instance.resume:
         ai_resume = get_movie_resume(

@@ -8,24 +8,46 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Nationality',
+            name="Nationality",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nationality', models.CharField(max_length=50)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nationality", models.CharField(max_length=50)),
             ],
         ),
         migrations.CreateModel(
-            name='Actor',
+            name="Actor",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('birthday', models.DateField(blank=True, null=True)),
-                ('nationality', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='actor_nationality', to='actors.nationality')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("birthday", models.DateField(blank=True, null=True)),
+                (
+                    "nationality",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="actor_nationality",
+                        to="actors.nationality",
+                    ),
+                ),
             ],
         ),
     ]

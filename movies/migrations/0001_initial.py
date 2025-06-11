@@ -9,20 +9,40 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('actors', '0002_alter_nationality_options'),
-        ('genres', '0001_initial'),
+        ("actors", "0002_alter_nationality_options"),
+        ("genres", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Movie',
+            name="Movie",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=200)),
-                ('release_date', models.DateField(blank=True, null=True)),
-                ('resume', models.TextField(blank=True, null=True)),
-                ('actors', models.ManyToManyField(related_name='actor_movie', to='actors.actor')),
-                ('genre', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='movie_genre', to='genres.genre')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=200)),
+                ("release_date", models.DateField(blank=True, null=True)),
+                ("resume", models.TextField(blank=True, null=True)),
+                (
+                    "actors",
+                    models.ManyToManyField(
+                        related_name="actor_movie", to="actors.actor"
+                    ),
+                ),
+                (
+                    "genre",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="movie_genre",
+                        to="genres.genre",
+                    ),
+                ),
             ],
         ),
     ]
