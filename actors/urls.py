@@ -1,5 +1,5 @@
-from django.urls import path, include
-from .views import *
+from django.urls import path
+from .views import ActorCreateListView, ActorRetrieveUpdateDestroyView
 
 urlpatterns = [
     path("actors/", ActorCreateListView.as_view(), name="actor-create-list"),
