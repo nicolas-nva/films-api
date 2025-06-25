@@ -3,7 +3,7 @@ from rest_framework import generics, views, response, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .models import Movie
-from .serializers import MovieSerializer
+from .serializers import MovieSerializer, MovieDetailSerializer
 from app.permissions import GlobalDefaultPermissions
 from reviews.models import Review
 
@@ -11,13 +11,22 @@ from reviews.models import Review
 class MovieCreateListView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated, GlobalDefaultPermissions)
     queryset = Movie.objects.all()
-    serializer_class = MovieSerializer
+
+    def get_serializer_class(self):
+        if self.request.method == "GET":
+            return MovieDetailSerializer
+        return MovieSerializer
 
 
 class MovieRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated, GlobalDefaultPermissions)
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
+
+    def get_serializer_class(self):
+        if self.request.method == "GET":
+            return MovieDetailSerializer
+        return MovieSerializer
 
     def delete(self, *args, **kwargs):
         instance = self.get_object()
